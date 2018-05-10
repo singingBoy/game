@@ -3,11 +3,11 @@
 
 import Resources from './Resources.js'
 
-export default class ResourceLoader{
-    constructor(){
+export default class ResourceLoader {
+    constructor() {
         // 构造时候把图片资源引入、并加载
         this.map = new Map(Resources);
-        for(let [key, value] of this.map){
+        for (let [key, value] of this.map) {
             let image = new Image(value);
             image.src = value;
             // value = image; 无法把image放进去
@@ -16,21 +16,26 @@ export default class ResourceLoader{
     }
 
     /* 所有资源加载完成回掉 */
-    onLoad(callback){
+    onLoad(callback) {
         let time = 0;
-        for(let [key,value] of this.map){
-            value.onload = ()=>{
+        for (let value of this.map.values()) {
+            value.onload = () => {
                 console.log(value.width)
-                time ++;
-                if(time === this.map.size){
+                time++;
+                if (time >= this.map.size) {
                     callback && callback(this.map);
                 }
             }
         }
     }
 
+    /* 获取资源map */
+    getSourceMap() {
+        return this.map;
+    }
+
     /* 静态创建方法create */
-    static create(){
+    static create() {
         return new ResourceLoader();
     }
 }

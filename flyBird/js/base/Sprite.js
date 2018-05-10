@@ -36,7 +36,7 @@ export default class Sprite {
 
         // canvas 保存到 DataStore 的静态元素中，唯一性
         this.dataStore = DataStore.getInstance();
-        this.ctx = this.dataStore.ctx
+        // this.ctx = this.dataStore.ctx
     }
 
     /**
@@ -60,18 +60,7 @@ export default class Sprite {
          y = this.y,
          width = this.width,
          height = this.height){
-        console.log('111',{
-            img,
-            sx,
-            sy,
-            sWidth,
-            sHeight,
-            x,
-            y,
-            width,
-            height
-        })
-        this.ctx.drawImage(
+        this.dataStore.ctx.drawImage(
             img,
             sx,
             sy,
