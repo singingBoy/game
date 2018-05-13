@@ -27,6 +27,7 @@ export default class Land extends Sprite {
         if(this.landX >= this.width){
             this.landX = 0;
         }
+        // 初始的陆地
         this.ctx.drawImage(
             this.img,
             0,
@@ -38,6 +39,7 @@ export default class Land extends Sprite {
             this.width,
             this.height
         );
+        // 补上的陆地
         this.ctx.drawImage(
             this.img,
             0,
