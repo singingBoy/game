@@ -2,14 +2,16 @@
 //资源文件加载器，确保canvas在图片资源加载完成后才进行渲染
 
 import Resources from './Resources.js'
+import DataStore from "./DataStore.js";
 
 export default class ResourceLoader {
     constructor() {
         // 构造时候把图片资源引入、并加载
         this.map = new Map(Resources);
         for (let [key, value] of this.map) {
-            let image = new Image(value);
+            let image = new Image();
             image.src = value;
+            DataStore.getInstance().put(key, image);
             // value = image; 无法把image放进去
             this.map.set(key, image);
         }
@@ -20,7 +22,6 @@ export default class ResourceLoader {
         let time = 0;
         for (let value of this.map.values()) {
             value.onload = () => {
-                console.log(value.width)
                 time++;
                 if (time >= this.map.size) {
                     callback && callback(this.map);

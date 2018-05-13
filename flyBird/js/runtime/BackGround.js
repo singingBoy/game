@@ -1,17 +1,19 @@
 'use strict'
 // 背景类
 import Sprite from '../base/Sprite.js'
+import DataStore from "../base/DataStore.js";
 
 export default class BackGround extends Sprite{
-    constructor(img, width, height){
-        console.dir(img)
+    constructor(){
+        const canvas = DataStore.getInstance().canvas;
+        const background = DataStore.getInstance().get('background');
         super(
-            img,
+            background,
             0, 0,
-            img.width, img.height,
+            background.width, background.height,
             0, 0,
-            width,
-            height
+            canvas.width,
+            canvas.height
         );
     }
 }
