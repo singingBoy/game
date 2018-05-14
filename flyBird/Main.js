@@ -8,6 +8,7 @@ import Birds from "./js/player/Birds.js";
 import PencilDown from "./js/runtime/PencilDown.js";
 import PencilUp from "./js/runtime/PencilUp.js";
 import StartButton from "./js/player/StartButton.js";
+import Score from "./js/player/Score.js";
 
 // let screenW = document.documentElement.clientWidth;//window.screen.width;
 // let screenH = document.documentElement.clientHeight;//window.screen.height;
@@ -46,6 +47,7 @@ export default class Main {
             .put('birds', Birds)
             .put('pencilDown', PencilDown)
             .put('startButton', StartButton)
+            .put('score', Score)
             .put('pencilUp', PencilUp);
 
         this.canvas.addEventListener('touchstart', (e) => {

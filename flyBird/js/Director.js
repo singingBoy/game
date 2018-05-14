@@ -15,6 +15,7 @@ export default class Director {
         this.dataStore = DataStore.getInstance();
         this.canvas = this.dataStore.canvas;
         this.gameOver = false;
+        this.scoreFlag = false;
     }
 
     /* 小鸟飞 */
@@ -36,7 +37,8 @@ export default class Director {
             this.gameOver = true;
         }
         // 小鸟撞柱子
-        this.checkBoom(bird);
+        this.checkPencilDownBoom(bird);
+        this.checkPencilUpBoom(bird);
 
         if (this.gameOver) {
             this.dataStore.get('startButton').draw();
@@ -47,20 +49,62 @@ export default class Director {
         return true;
     }
 
-    /* 判断是否和铅笔相撞 */
-    checkBoom(bird) {
+    /* 加分 */
+    addScore() {
+        if (!this.gameOver) {
+            const {positionX} = this.dataStore.get('birds');
+            const score = this.dataStore.get('score');
+            const {firstX, img, secondX} = this.dataStore.get('pencilDown');
+            if(firstX < positionX && positionX < firstX+img.width){
+                this.scoreFlag = false;
+            }
+            if (positionX > (firstX + img.width) && !this.scoreFlag) {
+                this.scoreFlag = true;
+                score.goScore();
+            }
+            if(secondX < positionX && positionX < secondX+img.width){
+                this.scoreFlag = false;
+            }
+            if (positionX > (secondX + img.width) && !this.scoreFlag) {
+                this.scoreFlag = true;
+                score.goScore();
+            }
+
+        }
+    }
+
+    /* 判断是否和向下铅笔相撞 */
+    checkPencilDownBoom(bird) {
         const {firstX, firstY, secondX, secondY, img} = this.dataStore.get('pencilDown');
         const {positionX, positionY} = bird;
-        if (firstX <= positionX <= firstX + img.width) {
+        if (firstX <= positionX &&
+            positionX <= (firstX + img.width) &&
+            firstY <= positionY &&
+            positionY <= (firstY + img.height)) {
             this.gameOver = true;
         }
-        if (secondX <= positionX <= secondX + img.width) {
+        if (secondX <= positionX &&
+            positionX <= (secondX + img.width) &&
+            secondY <= positionY &&
+            positionY <= (secondY + img.height)) {
             this.gameOver = true;
         }
-        if (firstY <= positionY <= firstY + img.height) {
+    }
+
+    /* 判断是否和向上铅笔相撞 */
+    checkPencilUpBoom(bird) {
+        const {firstX, firstY, secondX, secondY, img} = this.dataStore.get('pencilUp');
+        const {positionX, positionY} = bird;
+        if (firstX <= positionX &&
+            positionX <= (firstX + img.width) &&
+            firstY <= positionY &&
+            positionY <= (firstY + img.height)) {
             this.gameOver = true;
         }
-        if (secondY <= positionY <= secondY + img.height) {
+        if (secondX <= positionX &&
+            positionX <= (secondX + img.width) &&
+            secondY <= positionY &&
+            positionY <= (secondY + img.height)) {
             this.gameOver = true;
         }
     }
@@ -72,6 +116,8 @@ export default class Director {
             this.dataStore.get('birds').draw();
             this.dataStore.get('pencilDown').draw();
             this.dataStore.get('pencilUp').draw();
+            this.dataStore.get('score').draw();
+            this.addScore();
 
             this.timer = requestAnimationFrame(() => {
                 this.run();

@@ -34,10 +34,10 @@ export default class PencilUp extends Sprite {
         // 第一第二支铅笔 向右移动x坐标
         this.firstX -= this.speedX;
         this.secondX -= this.speedX;
-        if (this.firstX <= 0) {
+        if (this.firstX <= -this.img.width) {
             this.firstX = this.canvas.width;
         }
-        if(this.secondX <= 0){
+        if(this.secondX <= -this.img.width){
             this.secondX = this.canvas.width;
         }
         // 第一第二支铅笔 上下移动速度
