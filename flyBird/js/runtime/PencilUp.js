@@ -6,9 +6,9 @@ import DataStore from "../base/DataStore.js";
 
 export default class PencilUp extends Sprite {
     constructor() {
-        const img = DataStore.getInstance().get('pencilUp');
-        const canvas = DataStore.getInstance().get('canvas');
-        const land = DataStore.getInstance().get('land');
+        const canvas = DataStore.getInstance().canvas;
+        const img = DataStore.getInstance().res.get('pencilUp');
+        const land = DataStore.getInstance().res.get('land');
         super(img, 0, 0, img.width, img.height, 0, 0, img.width, img.height);
         // 初始化
         this.canvas = canvas;

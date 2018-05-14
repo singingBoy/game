@@ -7,7 +7,7 @@ import DataStore from "../base/DataStore.js";
 export default class Land extends Sprite {
     constructor() {
         const {width, height} = DataStore.getInstance().canvas;
-        const img = DataStore.getInstance().get('land');
+        const img = DataStore.getInstance().res.get('land');
         super(img,
             0, 0,
             img.width, img.height,

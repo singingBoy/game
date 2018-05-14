@@ -6,9 +6,9 @@ import DataStore from "../base/DataStore.js";
 
 export default class Birds extends Sprite {
     constructor() {
-        const birdImage = DataStore.getInstance().get('birds');
         const canvas = DataStore.getInstance().get('canvas');
-        const land = DataStore.getInstance().get('land');
+        const birdImage = DataStore.getInstance().res.get('birds');
+        const land = DataStore.getInstance().res.get('land');
         super(birdImage,
             10, 10,
             birdImage.width,
@@ -31,7 +31,7 @@ export default class Birds extends Sprite {
     }
 
     flyUp(){
-        this.positionY -= 30;
+        this.positionY -= 20;
         this.time = 0;
         this.index = 0;//Math.floor(Math.random()*6 + 1);
     }

@@ -7,6 +7,7 @@ import Director from "./js/Director.js";
 import Birds from "./js/player/Birds.js";
 import PencilDown from "./js/runtime/PencilDown.js";
 import PencilUp from "./js/runtime/PencilUp.js";
+import StartButton from "./js/player/StartButton.js";
 
 // let screenW = document.documentElement.clientWidth;//window.screen.width;
 // let screenH = document.documentElement.clientHeight;//window.screen.height;
@@ -22,6 +23,7 @@ export default class Main {
         // 全屏宽高
         this.canvas.width = screenW;
         this.canvas.height = screenH;
+        console.log(screenW,screenH)
         this.dataStore = DataStore.getInstance();
         this.director = Director.getInstance();
 
@@ -34,6 +36,7 @@ export default class Main {
     init(map) {
         this.dataStore.canvas = this.canvas;
         this.dataStore.ctx = this.ctx;
+        this.director.gameOver = false;
 
         DataStore.getInstance()
             .put('canvas', this.canvas)
@@ -41,12 +44,17 @@ export default class Main {
             .put('background', BackGround)
             .put('land', Land)
             .put('birds', Birds)
-            .put('pencilDown',PencilDown)
-            .put('pencilUp',PencilUp);
+            .put('pencilDown', PencilDown)
+            .put('startButton', StartButton)
+            .put('pencilUp', PencilUp);
 
-        this.canvas.addEventListener('touchstart', (e) =>
-            this.director.birdFly(e, this.dataStore)
-        );
+        this.canvas.addEventListener('touchstart', (e) => {
+            this.director.birdFly(e, this.dataStore);
+            let gameOver = this.director.gameOver;
+            if (gameOver) {
+                this.init();
+            }
+        });
         this.director.run();
     }
 

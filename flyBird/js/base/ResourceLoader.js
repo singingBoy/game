@@ -11,7 +11,7 @@ export default class ResourceLoader {
         for (let [key, value] of this.map) {
             let image = new Image();
             image.src = value;
-            DataStore.getInstance().put(key, image);
+            DataStore.getInstance().res.set(key, image);
             // value = image; 无法把image放进去
             this.map.set(key, image);
         }

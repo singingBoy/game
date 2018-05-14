@@ -6,7 +6,7 @@ import DataStore from "../base/DataStore.js";
 export default class BackGround extends Sprite{
     constructor(){
         const canvas = DataStore.getInstance().canvas;
-        const background = DataStore.getInstance().get('background');
+        const background = DataStore.getInstance().res.get('background');
         super(
             background,
             0, 0,

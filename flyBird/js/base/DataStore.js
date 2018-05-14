@@ -20,7 +20,8 @@ export default class DataStore {
     }
 
     constructor() {
-        this.map = new Map();
+        this.map = new Map();// 保存Class对象
+        this.res = new Map();// 保存图片Image对象
     }
 
     /* 新增put方法 */
