@@ -1,3 +1,5 @@
+import imageData from '../../data/imageData'
+
 /* 存储类 */
 export default class Store{
 
@@ -9,10 +11,16 @@ export default class Store{
     }
 
     constructor(){
+        // 图片地址map
+        this.imgUrlStore = new Map(imageData);
         // 图片存储map
         this.imgStore = new Map();
         // 类存储map
         this.classStore = new Map();
+        // canvas
+        this.canvas = canvas;
+        // 缩小比例
+        this.flexible = 0.5;
     }
 
     /* 设置存储对象 */
@@ -23,6 +31,7 @@ export default class Store{
         type === 'img'?
             this.imgStore.set(key, value):
             this.classStore.set(key, value)
+        return this;
     }
 
     /* 获取存储对象 */
