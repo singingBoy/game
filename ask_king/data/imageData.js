@@ -11,6 +11,7 @@ export default [
     ['icon_load_car_body','http://p8r42e5z2.bkt.clouddn.com/icon_load_car_body.png'], // loading car
     ['icon_load_mountain','http://p8r42e5z2.bkt.clouddn.com/icon_load_mountain.png'], // loading bg
     ['icon_load_wheel_fro','http://p8r42e5z2.bkt.clouddn.com/icon_load_wheel_fro.png'], // loading car wheel
+    ['loading','http://p8r42e5z2.bkt.clouddn.com/loading.png'], // loading icon
 
     ['icon_whole_wave_blue','http://p8r42e5z2.bkt.clouddn.com/icon_whole_wave_blue.png'], // 波浪
 ]

@@ -14,6 +14,17 @@ export default class Director{
 
     startUp(){
         const loading = Store.getInstance().getItem({key:'loading'});
-        loading.draw(ctx);
+        loading.animated(ctx);
+    }
+
+    /*Loading动画*/
+    animatedLoading(ctx){
+        console.log(this.draw)
+        this.draw(ctx);
+        this.loadingTimer = requestAnimationFrame(this.animated);
+    }
+
+    destroy(){
+        this.loadingTimer && cancelAnimationFrame(this.loadingTimer);
     }
 }
