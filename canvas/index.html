@@ -4,19 +4,61 @@
     <meta charset="UTF-8">
     <title>Canvas Leaning</title>
     <style type="text/css">
-        div{
-            display: inline-block;
-        }
+        li{margin: 10px;}
+        h3{text-indent: 20px;margin: 0;}
+        hr{margin: 0 20px;}
     </style>
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
 </head>
 <body>
-    <ul>
-        <li>
-            <a href="./src/example1">练习1：使用线条绘制创建一个 fillRect、strokeRect 方法</a>
-        </li>
-        <li>
-            <a href="./src/example2">练习2：绘制一个五角星</a>
-        </li>
-    </ul>
+<h1> Canvas 线条 </h1>
+<ul>
+    <li>
+        <a href="./src/example1">练习1：使用线条绘制创建一个 fillRect、strokeRect 方法</a>
+    </li>
+    <li>
+        <a href="./src/example2">练习2：绘制一个五角星</a>
+    </li>
+</ul>
+<h3>Canvas线条总结：</h3>
+<section>
+    <pre>
+        <code class="javascript">
+            ctx.beginPath()  //开始一段全新的路径
+            ctx.closePath()  //封闭该绘图路径，并使环境指向原上下文（通常使用1、2来绘制封闭图形，不使用的话会 造成封闭图形封闭得不完整）
+            ctx.moveTo(x, y) //设置描笔起点
+            ctx.lineTo(x, y) //从上一个坐标点到x、y坐标点
+            ctx.strokeStyle = color | gradient | pattern  //绘制线条颜色、线性、pattern对象
+            ctx.lineWidth = 10  //线条宽度10
+            ctx.stroke()  //开始绘制
+            ctx.fillStyle = color | gradient | pattern  //填充颜色、线性、pattern对象
+            ctx.fill()  //开始填充
+
+            ctx.strokeRect(x, y, width, height)  //画一个矩形
+            ctx.fillRect(x, y, width, height)   //画一个填充矩形、默认颜色黑色
+            ctx.rect(x, y, width, height)  //计算一个矩形4点，相当于3/4个lineTo
+
+            /*
+            * 心得体会：
+            * canvas 绘制的 border有点怪异，就是10的border绘制在0，0的位置上，border的中心在0，0位置，边在-5的位置
+            * */
+        </code>
+    </pre>
+    <hr />
+    <pre>
+        <code class="javascript">
+            /* 线条的属性 */
+            ctx.lineWidth = 10; //线条宽度
+            ctx.lineCap = 'butt' || 'round' || 'square'; //线条帽子🎩
+            ctx.joinLine = 'miter' || 'bevel' || 'round'; //线条连接形式：尖角、平角、圆角
+            ctx.miterLimit = 10; //线条尖角连接限值
+        </code>
+    </pre>
+</section>
 </body>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/javascript.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 </html>
